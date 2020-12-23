@@ -9,12 +9,24 @@ const register = require("./controllers/register");
 const signin = require("./controllers/signin");
 const profile = require("./controllers/profile");
 const image = require("./controllers/image");
+const auth = require("./controllers/authorization");
 
-// connect to your own database here
+// Postgres database setup Docker
 const db = knex({
   client: "pg",
   connection: process.env.POSTGRES_URI,
 });
+
+// // Postgres database setup local
+// const db = knex({
+//   client: "pg",
+//   connection: {
+//     host: "127.0.0.1",
+//     user: "",
+//     password: "",
+//     database: "smart-brain",
+//   },
+// });
 
 const app = express();
 
@@ -37,20 +49,20 @@ app.get("/", (req, res) => {
   res.send("MAKE YOURSELF GREAT AGAIN");
 });
 
-app.post("/signin", signin.handleSignin(db, bcrypt));
+app.post("/signin", signin.signinAuthentication(db, bcrypt));
 app.post("/register", (req, res) => {
   register.handleRegister(req, res, db, bcrypt);
 });
-app.get("/profile/:id", (req, res) => {
+app.get("/profile/:id", auth.requireAuth, (req, res) => {
   profile.handleProfileGet(req, res, db);
 });
-app.post("/profile/:id", (req, res) => {
+app.post("/profile/:id", auth.requireAuth, (req, res) => {
   profile.handleProfileUpdate(req, res, db);
 });
-app.put("/image", (req, res) => {
+app.put("/image", auth.requireAuth, (req, res) => {
   image.handleImage(req, res, db);
 });
-app.post("/imageurl", (req, res) => {
+app.post("/imageurl", auth.requireAuth, (req, res) => {
   image.handleApiCall(req, res);
 });
 

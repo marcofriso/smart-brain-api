@@ -14,7 +14,16 @@ You can grab Clarifai API key [here](https://www.clarifai.com/)
 
 ** Make sure you use postgreSQL instead of mySQL for this code base.
 
+## Run locally
+
+1. Run Beaver Postgres
+2. Run `redis-server` in a separate tab
+
 ## Run with Docker
 
 1. Start Docker
 2. Run `docker-compose up`
+
+## Extra functionalities that it is possible to add
+
+[Udemy course - functionalities to add](https://www.udemy.com/course/the-complete-junior-to-senior-web-developer-roadmap/learn/lecture/10521040#overview).
