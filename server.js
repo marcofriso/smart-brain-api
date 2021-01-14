@@ -12,21 +12,21 @@ const image = require("./controllers/image");
 const auth = require("./controllers/authorization");
 
 // Postgres database setup Docker
-const db = knex({
-  client: "pg",
-  connection: process.env.POSTGRES_URI,
-});
-
-// // Postgres database setup local
 // const db = knex({
 //   client: "pg",
-//   connection: {
-//     host: "127.0.0.1",
-//     user: "",
-//     password: "",
-//     database: "smart-brain",
-//   },
+//   connection: process.env.POSTGRES_URI,
 // });
+
+// // Postgres database setup local
+const db = knex({
+  client: "pg",
+  connection: {
+    host: "127.0.0.1",
+    user: "",
+    password: "",
+    database: "smart-brain",
+  },
+});
 
 const app = express();
 

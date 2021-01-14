@@ -8,18 +8,22 @@ Final project for ZTM course
 2. Run `npm install`
 3. Run `npm start`
 4. You must add your own API key in the `controllers/image.js` file to connect to Clarifai API
-5. Add your own database credentials to `server.js` line 12
+5. Add your own database credentials to `server.js` lines 14 to 29
 
 You can grab Clarifai API key [here](https://www.clarifai.com/)
 
 ** Make sure you use postgreSQL instead of mySQL for this code base.
 
-## Run locally
+## Run
 
+Check in `server.js` the settings for LOCAL vs. DOCKER settings
+
+### Run locally
+ 
 1. Run Beaver Postgres
 2. Run `redis-server` in a separate tab
 
-## Run with Docker
+### Run with Docker
 
 1. Start Docker
 2. Run `docker-compose up`
